@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%92%8C</text></svg>">
+  <title>Special Delivery 💌</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="backdrop-decor" aria-hidden="true">
+    <span class="floaty f1">💗</span>
+    <span class="floaty f2">✨</span>
+    <span class="floaty f3">💕</span>
+    <span class="floaty f4">☁️</span>
+    <span class="floaty f5">✨</span>
+  </div>
+
+  <button id="soundToggle" class="sound-toggle" aria-label="Mute sound">🔊</button>
+
+  <main class="app" id="app">
+
+    <!-- SCENE 1: Question -->
+    <section class="scene active" id="scene-question">
+      <div class="card">
+        <div class="eyebrow">🛵 Order Tracker</div>
+        <h1>Hey Supu! 💕</h1>
+        <p class="sub">Before your delivery partner shows up, answer quick question —<br><strong>what did you order?</strong>
+        </p>
+        <input type="text" id="orderInput" class="order-input" placeholder="Type what you ordered..." maxlength="60" />
+        <button id="startBtn" class="btn-primary">Track My Order →</button>
+      </div>
+    </section>
+
+    <!-- SCENE 2: Delivery -->
+    <section class="scene" id="scene-delivery">
+      <div class="tracker">
+        <div class="tracker-step done" id="step1"><span class="dot"></span><label>Placed</label></div>
+        <div class="tracker-line" id="trackerLine1"></div>
+        <div class="tracker-step" id="step2"><span class="dot"></span><label>Picked Up</label></div>
+        <div class="tracker-line" id="trackerLine2"></div>
+        <div class="tracker-step" id="step3"><span class="dot"></span><label>Arriving</label></div>
+      </div>
+      <p class="status-text" id="statusText">Your delivery partner is on the way! 🛵</p>
+
+      <div class="road-stage">
+        <div class="sky-clouds">
+          <div class="cloud c1"></div>
+          <div class="cloud c2"></div>
+        </div>
+        <div class="doorstep">
+          <div class="door">🚪</div>
+          <div class="mat"></div>
+        </div>
+        <div class="scooter-wrap" id="scooterWrap">
+          <div class="speed-lines"><span></span><span></span><span></span></div>
+          <div class="scooter-shadow"></div>
+          <div class="scooter-bob">
+            <svg class="scooter-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+              <rect x="46" y="26" width="42" height="36" rx="9" fill="#FF6B8A" />
+              <rect x="46" y="26" width="42" height="9" rx="4" fill="#FF4D6D" />
+              <text x="67" y="50" font-size="16" fill="#fff" text-anchor="middle"
+                font-family="Arial, sans-serif">♥</text>
+              <path d="M108 42 L155 35" stroke="#FF8C42" stroke-width="8" stroke-linecap="round" />
+              <rect x="98" y="38" width="18" height="26" rx="9" fill="#FF8C42" transform="rotate(-15 107 51)" />
+              <path d="M104 62 L120 82" stroke="#3B3542" stroke-width="10" stroke-linecap="round" />
+              <rect x="74" y="55" width="8" height="24" rx="3" fill="#2B2140" />
+              <ellipse cx="79" cy="54" rx="16" ry="7" fill="#2B2140" />
+              <path d="M140 80 L159 33" stroke="#2EC4B6" stroke-width="7" stroke-linecap="round" />
+              <rect x="150" y="27" width="28" height="8" rx="4" fill="#1B7F79" />
+              <circle cx="163" cy="43" r="5" fill="#FFD166" />
+              <rect x="55" y="78" width="90" height="10" rx="5" fill="#2EC4B6" />
+              <ellipse cx="112" cy="22" rx="13" ry="10" fill="#FF6B8A" />
+              <circle cx="112" cy="30" r="11" fill="#F4C79A" />
+              <g class="wheel">
+                <circle cx="42" cy="92" r="17" fill="#3A2E33" />
+                <circle cx="42" cy="92" r="7" fill="#E7DEE1" />
+              </g>
+              <g class="wheel">
+                <circle cx="148" cy="92" r="17" fill="#3A2E33" />
+                <circle cx="148" cy="92" r="7" fill="#E7DEE1" />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="road"></div>
+      </div>
+    </section>
+
+    <!-- SCENE 3: Unboxing -->
+    <section class="scene" id="scene-unbox">
+      <div class="reveal-caption" id="revealCaption">&nbsp;</div>
+      <p class="reveal-sub" id="revealSub">&nbsp;</p>
+
+      <div class="unbox-stage">
+        <div class="particles" id="particles"></div>
+        <div class="reveal-item" id="revealItem"></div>
+        <div class="box" id="box">
+          <div class="box-front">
+            <div class="washi-tape"></div>
+            <div class="box-emblem">♥</div>
+          </div>
+          <div class="flap flap-left"></div>
+          <div class="flap flap-right"></div>
+          <div class="hand hand-left">🤚</div>
+          <div class="hand hand-right">🤚</div>
+        </div>
+      </div>
+
+      <div class="final-actions hidden" id="finalActions">
+        <p class="final-msg" id="finalMsg"></p>
+        <p class="sign-off" id="signOff"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- OOPS OVERLAY -->
+  <div class="overlay hidden" id="oopsOverlay">
+    <div class="oops-card">
+      <div class="oops-emoji">😳</div>
+      <h2>Oops! Wrong Delivery!</h2>
+      <p id="oopsText"></p>
+      <button class="btn-primary" id="realOrderBtn">Wait, I'm delivering the right one 😅</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
