@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>A Diwali Night in My Universe ❤️ | Happy Diwali My Love</title>
+  <meta name="description" content="A magical, romantic Diwali night surprise celebrating the brightest light in my universe.">
+  <meta name="theme-color" content="#070514">
+
+  <!-- Google Fonts: Cinzel Decorative, Cormorant Garamond, Great Vibes, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 for elegant icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Audio Element -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="assets/music/romantic.mp3" type="audio/mpeg">
+    <source src="assets/music/romantic.wav" type="audio/wav">
+  </audio>
+
+  <!-- Global Canvas for Background Stars & Fireworks -->
+  <canvas id="skyCanvas" aria-hidden="true"></canvas>
+
+  <!-- Interactive Stardust Particle Layer (Cursor sparkles) -->
+  <div id="sparkle-container" aria-hidden="true"></div>
+
+  <!-- Floating Sky Lanterns Layer -->
+  <div id="sky-lanterns-layer" aria-hidden="true"></div>
+
+  <!-- Floating Audio Toggle (Revealed after opening surprise) -->
+  <aside id="audio-control" class="audio-control-hidden" aria-label="Audio controls">
+    <button id="musicToggleBtn" class="music-toggle-btn" aria-label="Toggle background music" title="Toggle background music">
+      <span class="music-wave" aria-hidden="true">
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar3"></span>
+      </span>
+      <i class="fa-solid fa-volume-high music-icon" id="musicIcon" aria-hidden="true"></i>
+    </button>
+  </aside>
+
+  <!-- ================================================================= -->
+  <!-- 3. OPENING EXPERIENCE — THE SURPRISE SCENE                       -->
+  <!-- ================================================================= -->
+  <section id="opening-scene" class="opening-scene" role="dialog" aria-modal="true" aria-label="Diwali Surprise Intro">
+    <div class="opening-content">
+      <!-- Diya Animation with Glowing Light Rays -->
+      <div class="opening-diya-wrapper">
+        <div class="light-rays-halo" aria-hidden="true"></div>
+        <div class="opening-diya">
+          <div class="flame-aura"></div>
+          <div class="diya-flame">
+            <div class="flame-core"></div>
+          </div>
+          <div class="diya-body">
+            <div class="diya-rim"></div>
+            <div class="diya-base"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Romantic Progressive Reveal Texts -->
+      <div class="opening-text-container">
+        <p class="opening-subtext" id="openingStep1">Tonight is not just about celebrating lights...</p>
+        <h1 class="opening-main-quote" id="openingStep2">Someone makes my entire world brighter.</h1>
+        <p class="opening-dedication" id="openingStep3">Among billions of stars, you are my favourite universe.</p>
+      </div>
+
+      <!-- Surprise Unlock Button -->
+      <div class="opening-action" id="openingAction">
+        <button id="openSurpriseBtn" class="btn-royal-glow" aria-label="Open your Diwali surprise">
+          <span class="btn-sparkle-left">✨</span>
+          <span class="btn-text">Open Your Surprise ❤️</span>
+          <span class="btn-sparkle-right">✨</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- MAIN EXPERIENCE WRAPPER (Revealed upon opening)                   -->
+  <!-- ================================================================= -->
+  <div id="main-experience" class="main-experience-hidden">
+
+    <!-- Floating Navigation Bar -->
+    <header class="navbar-wrapper">
+      <nav class="navbar glass-card" aria-label="Main navigation">
+        <a href="#hero" class="nav-brand">
+          <span class="brand-sparkle">✨</span>
+          <span class="brand-text">My Universe</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#photo-reveal" class="nav-link">Her Light ✨</a></li>
+          <li><a href="#letter" class="nav-link">My Letter</a></li>
+          <li><a href="#celebration" class="nav-link">Diwali Magic</a></li>
+          <li><a href="#special-surprise" class="nav-link">Question</a></li>
+          <li><a href="#ending" class="nav-link">Forever</a></li>
+        </ul>
+        <button id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </nav>
+      <!-- Mobile Drawer Menu -->
+      <div id="mobileDrawer" class="mobile-drawer glass-card" aria-hidden="true">
+        <ul class="mobile-nav-links">
+          <li><a href="#hero" class="mobile-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="#photo-reveal" class="mobile-link"><i class="fa-solid fa-sparkles"></i> Her Light ✨</a></li>
+          <li><a href="#letter" class="mobile-link"><i class="fa-solid fa-envelope-open-text"></i> My Letter</a></li>
+          <li><a href="#celebration" class="mobile-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Diwali Magic</a></li>
+          <li><a href="#special-surprise" class="mobile-link"><i class="fa-solid fa-heart"></i> Special Question</a></li>
+          <li><a href="#ending" class="mobile-link"><i class="fa-solid fa-infinity"></i> Forever Yours</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============================================================= -->
+      <!-- 4. MAIN HERO SECTION                                          -->
+      <!-- ============================================================= -->
+      <section id="hero" class="hero-section" aria-label="Hero celebration">
+        <div class="container hero-container">
+          <div class="hero-badge reveal-on-scroll">
+            <span class="badge-icon"><i class="fa-solid fa-sparkles"></i></span>
+            <span class="badge-text">A LITTLE DIWALI SURPRISE FOR MY FAVOURITE PERSON</span>
+            <span class="badge-icon"><i class="fa-solid fa-sparkles"></i></span>
+          </div>
+
+          <h1 class="hero-title reveal-on-scroll">
+            Happy Diwali,<br>
+            <span class="gold-gradient-text">My Beautiful Universe ❤️</span>
+          </h1>
+
+          <div class="hero-decorative-line reveal-on-scroll">
+            <span class="line-wing left"></span>
+            <span class="line-diya-icon">🪔</span>
+            <span class="line-wing right"></span>
+          </div>
+
+          <p class="hero-subtitle reveal-on-scroll">
+            "If the entire world were filled with lights, I would still look for the light that shines brightest &mdash; <strong>YOU</strong>."
+          </p>
+
+          <!-- Hero Bottom Floating Diyas Row -->
+          <div class="hero-diyas-row reveal-on-scroll" aria-hidden="true">
+            <div class="mini-diya diya-1"><div class="mini-flame"></div></div>
+            <div class="mini-diya diya-2"><div class="mini-flame"></div></div>
+            <div class="mini-diya diya-center"><div class="mini-flame glow-pulse"></div></div>
+            <div class="mini-diya diya-2"><div class="mini-flame"></div></div>
+            <div class="mini-diya diya-1"><div class="mini-flame"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- 5. AESTHETIC DIWALI PHOTO REVEAL — HER BEAUTIFUL PICTURES     -->
+      <!-- ============================================================= -->
+      <section id="photo-reveal" class="photo-reveal-section" aria-label="Aesthetic Diwali Photo Reveal">
+        <div class="container reveal-container">
+
+          <!-- Grand Cinematic Photo Reveal Theater -->
+          <div class="reveal-theater reveal-on-scroll" id="revealTheater">
+            
+            <!-- Flanking Ambient Pedestal Diyas -->
+            <div class="theater-diya-pedestal left" aria-hidden="true">
+              <div class="pedestal-flame-aura"></div>
+              <div class="pedestal-diya-flame"></div>
+              <div class="pedestal-diya-body"></div>
+              <div class="pedestal-stand"></div>
+            </div>
+
+            <div class="theater-diya-pedestal right" aria-hidden="true">
+              <div class="pedestal-flame-aura"></div>
+              <div class="pedestal-diya-flame"></div>
+              <div class="pedestal-diya-body"></div>
+              <div class="pedestal-stand"></div>
+            </div>
+
+            <!-- Central Reveal Stage -->
+            <div class="reveal-stage glass-card">
+              <!-- Sacred Golden Rangoli Halo in Background -->
+              <div class="stage-rangoli-halo" aria-hidden="true">
+                <svg viewBox="0 0 200 200" class="stage-mandala-svg">
+                  <circle cx="100" cy="100" r="90" stroke="rgba(246, 196, 69, 0.25)" stroke-width="1.2" fill="none" stroke-dasharray="4,4"/>
+                  <circle cx="100" cy="100" r="65" stroke="rgba(246, 196, 69, 0.35)" stroke-width="1" fill="none"/>
+                  <g id="mini-petals" opacity="0.3">
+                    <path d="M 100,10 C 115,40 115,60 100,80 C 85,60 85,40 100,10 Z" fill="rgba(246, 196, 69, 0.15)" stroke="#f6c445" stroke-width="0.8"/>
+                    <path d="M 100,10 C 115,40 115,60 100,80 C 85,60 85,40 100,10 Z" transform="rotate(60 100 100)" fill="rgba(246, 196, 69, 0.15)" stroke="#f6c445" stroke-width="0.8"/>
+                    <path d="M 100,10 C 115,40 115,60 100,80 C 85,60 85,40 100,10 Z" transform="rotate(120 100 100)" fill="rgba(246, 196, 69, 0.15)" stroke="#f6c445" stroke-width="0.8"/>
+                    <path d="M 100,10 C 115,40 115,60 100,80 C 85,60 85,40 100,10 Z" transform="rotate(180 100 100)" fill="rgba(246, 196, 69, 0.15)" stroke="#f6c445" stroke-width="0.8"/>
+                    <path d="M 100,10 C 115,40 115,60 100,80 C 85,60 85,40 100,10 Z" transform="rotate(240 100 100)" fill="rgba(246, 196, 69, 0.15)" stroke="#f6c445" stroke-width="0.8"/>
+                    <path d="M 100,10 C 115,40 115,60 100,80 C 85,60 85,40 100,10 Z" transform="rotate(300 100 100)" fill="rgba(246, 196, 69, 0.15)" stroke="#f6c445" stroke-width="0.8"/>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Center Diya of the Reveal (Initiates each reveal with light bursts) -->
+              <div class="reveal-initiator-diya" id="revealInitiatorDiya" aria-hidden="true">
+                <div class="initiator-flame-burst"></div>
+                <div class="initiator-flame"></div>
+                <div class="initiator-body"></div>
+              </div>
+
+              <!-- Main Centerpiece Photo Frame -->
+              <div class="reveal-photo-frame" id="revealPhotoFrame" role="button" tabindex="0" aria-label="View photograph in fullscreen">
+                <div class="photo-glow-aura" aria-hidden="true"></div>
+                
+                <div class="reveal-image-holder" id="revealImageHolder">
+                  <img id="revealCurrentImg" src="assets/images/her1.png" alt="Aesthetic Diwali Photo Reveal" class="reveal-centerpiece-img">
+                  <!-- Golden Light Sweep Effect -->
+                  <div class="light-sweep-overlay" id="lightSweepOverlay" aria-hidden="true"></div>
+                  <!-- Floating Particles Canvas inside frame -->
+                  <div class="frame-sparkle-layer" id="frameSparkleLayer" aria-hidden="true"></div>
+                </div>
+
+                <!-- Hover / Tap Prompt -->
+                <div class="frame-action-hint">
+                  <span class="hint-pill"><i class="fa-solid fa-expand"></i> Tap for Fullscreen View ✨</span>
+                </div>
+              </div>
+
+              <!-- Romantic Poetic Line Banner -->
+              <div class="reveal-quote-banner" id="revealQuoteBanner">
+                <p class="reveal-romantic-line" id="revealRomanticLine">"Some lights are beautiful..."</p>
+                <p class="reveal-romantic-subline" id="revealRomanticSubline">A gentle glow in our starry sky.</p>
+              </div>
+
+              <!-- Autoplay Timeline Progress Bar -->
+              <div class="reveal-timeline" aria-label="Slideshow Progress">
+                <div class="timeline-bar" id="revealTimelineBar"></div>
+              </div>
+
+              <!-- Navigation Controls Bar -->
+              <div class="reveal-controls">
+                <!-- Diya Stepper Indicators (6 Diyas) -->
+                <div class="reveal-diya-steppers" id="revealDiyaSteppers" role="tablist" aria-label="Photo reveal navigation">
+                  <!-- Injected via JavaScript -->
+                </div>
+
+                <button id="revealPlayPauseBtn" class="reveal-nav-btn play-pause" aria-label="Pause slideshow">
+                  <i class="fa-solid fa-pause" id="revealPlayIcon"></i>
+                </button>
+              </div>
+
+            </div><!-- /reveal-stage -->
+
+          </div><!-- /reveal-theater -->
+        </div>
+      </section>
+
+      <!-- Fullscreen Lightbox Modal -->
+      <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Photo Lightbox" aria-hidden="true">
+        <button id="lightboxCloseBtn" class="lightbox-close" aria-label="Close fullscreen view">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <button id="lightboxPrevBtn" class="lightbox-nav-btn prev" aria-label="Previous photograph">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="lightbox-content">
+          <div class="lightbox-image-container">
+            <img id="lightboxImg" src="" alt="Fullscreen preview">
+            <div class="lightbox-loader" id="lightboxLoader"></div>
+          </div>
+          <div class="lightbox-details">
+            <span class="lightbox-counter" id="lightboxCounter">Diwali Reveal 1 of 6</span>
+            <h3 class="lightbox-title" id="lightboxTitle"></h3>
+            <p class="lightbox-desc" id="lightboxDesc"></p>
+          </div>
+        </div>
+
+        <button id="lightboxNextBtn" class="lightbox-nav-btn next" aria-label="Next photograph">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      
+      <!-- ============================================================= -->
+      <!-- 8. INTERACTIVE ROMANTIC SURPRISE                              -->
+      <!-- ============================================================= -->
+      <section id="special-surprise" class="surprise-section" aria-label="A special question">
+        <div class="container">
+          <div class="surprise-card glass-card reveal-on-scroll" id="surpriseCard">
+            <div class="surprise-badge">
+              <span>ONE LITTLE QUESTION FOR YOU...</span>
+            </div>
+            
+            <h2 class="surprise-question" id="surpriseQuestionText">
+              "Do you know how special you are to me?"
+            </h2>
+
+            <div class="surprise-action-wrap" id="surpriseActionWrap">
+              <button id="tellMeBtn" class="btn-royal-glow btn-tell-me" aria-label="Tell me how special I am">
+                <span>Tell Me ❤️</span>
+              </button>
+            </div>
+
+            <!-- Revealed Content Card -->
+            <div class="surprise-answer-box" id="surpriseAnswerBox" aria-hidden="true">
+              <div class="floating-hearts-cluster" aria-hidden="true">
+                <span class="flying-heart heart-1">💖</span>
+                <span class="flying-heart heart-2">✨</span>
+                <span class="flying-heart heart-3">❤️</span>
+                <span class="flying-heart heart-4">✨</span>
+                <span class="flying-heart heart-5">💕</span>
+              </div>
+              <p class="surprise-answer-text">
+                "Because in a world full of temporary things, you are my favourite forever. ❤️"
+              </p>
+              <div class="answer-sub-quote">
+                &mdash; With every heartbeat, on this Diwali and all to come.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- 6. ROMANTIC MESSAGE SECTION (Interactive Envelope & Letter)   -->
+      <!-- ============================================================= -->
+      <section id="letter" class="letter-section" aria-label="Romantic Letter Section">
+        <div class="container">
+          <div class="section-header text-center reveal-on-scroll">
+            <span class="section-eyebrow">SEALED WITH ALL MY HEART</span>
+            <h2 class="section-title">A Letter From My Heart 💌</h2>
+            <div class="title-divider"><span class="gem">❤️</span></div>
+            <p class="section-subtitle">Click the glowing envelope below to unfold my words.</p>
+          </div>
+
+          <div class="envelope-outer-container reveal-on-scroll">
+            <!-- 3D Interactive Envelope -->
+            <div class="envelope-wrapper" id="envelopeWrapper" role="button" tabindex="0" aria-label="Click to open romantic letter">
+              <div class="envelope-shadow"></div>
+              <div class="envelope" id="envelope">
+                <div class="envelope-front">
+                  <div class="envelope-flap" id="envelopeFlap"></div>
+                  <div class="envelope-pocket"></div>
+                  <!-- Glowing Wax Seal Button -->
+                  <div class="wax-seal" id="waxSeal" aria-hidden="true">
+                    <span class="seal-heart">❤️</span>
+                    <span class="seal-glow"></span>
+                  </div>
+                </div>
+
+                <!-- Letter Paper Inside Envelope -->
+                <article class="letter-paper" id="letterPaper" aria-label="Letter content">
+                  <div class="letter-ornament top-ornament">
+                    <span>✧</span> <span>✦</span> <span>✧</span>
+                  </div>
+                  
+                  <div class="letter-content" id="letterContentTarget">
+                    <!-- Injected smoothly via JavaScript with typing / fade-in effect -->
+                  </div>
+
+                  <div class="letter-ornament bottom-ornament">
+                    <span class="letter-signature-calligraphy">Forever Yours</span>
+                    <div class="mini-heart-pulse">❤️</div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="envelope-hint" id="envelopeHint">
+                <i class="fa-solid fa-hand-pointer"></i> Tap the seal to open your letter
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- 7. MAGICAL DIWALI CELEBRATION SECTION                         -->
+      <!-- ============================================================= -->
+      <section id="celebration" class="celebration-section" aria-label="Diwali Celebration Arena">
+        <!-- Rangoli Mandala Background Accent -->
+        <div class="rangoli-bg-pattern" aria-hidden="true">
+          <svg viewBox="0 0 400 400" class="rangoli-mandala-svg">
+            <circle cx="200" cy="200" r="180" stroke="url(#goldGrad)" stroke-width="1.5" fill="none" opacity="0.4" stroke-dasharray="6,4"/>
+            <circle cx="200" cy="200" r="130" stroke="url(#goldGrad)" stroke-width="1" fill="none" opacity="0.5"/>
+            <circle cx="200" cy="200" r="80" stroke="url(#goldGrad)" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <!-- 8-petal mandala symmetry -->
+            <g id="mandala-petals">
+              <path d="M 200,20 C 230,80 230,120 200,160 C 170,120 170,80 200,20 Z" fill="rgba(245, 197, 66, 0.08)" stroke="url(#goldGrad)" stroke-width="1"/>
+              <path d="M 200,20 C 230,80 230,120 200,160 C 170,120 170,80 200,20 Z" transform="rotate(45 200 200)" fill="rgba(245, 197, 66, 0.08)" stroke="url(#goldGrad)" stroke-width="1"/>
+              <path d="M 200,20 C 230,80 230,120 200,160 C 170,120 170,80 200,20 Z" transform="rotate(90 200 200)" fill="rgba(245, 197, 66, 0.08)" stroke="url(#goldGrad)" stroke-width="1"/>
+              <path d="M 200,20 C 230,80 230,120 200,160 C 170,120 170,80 200,20 Z" transform="rotate(135 200 200)" fill="rgba(245, 197, 66, 0.08)" stroke="url(#goldGrad)" stroke-width="1"/>
+              <path d="M 200,20 C 230,80 230,120 200,160 C 170,120 170,80 200,20 Z" transform="rotate(180 200 200)" fill="rgba(245, 197, 66, 0.08)" stroke="url(#goldGrad)" stroke-width="1"/>
+              <path d="M 200,20 C 230,80 230,120 200,160 C 170,120 170,80 200,20 Z" transform="rotate(225 200 200)" fill="rgba(245, 197, 66, 0.08)" stroke="url(#goldGrad)" stroke-width="1"/>
+              <path d="M 200,20 C 230,80 230,120 200,160 C 170,120 170,80 200,20 Z" transform="rotate(270 200 200)" fill="rgba(245, 197, 66, 0.08)" stroke="url(#goldGrad)" stroke-width="1"/>
+              <path d="M 200,20 C 230,80 230,120 200,160 C 170,120 170,80 200,20 Z" transform="rotate(315 200 200)" fill="rgba(245, 197, 66, 0.08)" stroke="url(#goldGrad)" stroke-width="1"/>
+            </g>
+            <defs>
+              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff2c6"/>
+                <stop offset="50%" stop-color="#f6c445"/>
+                <stop offset="100%" stop-color="#c89222"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="container celebration-container">
+          <div class="section-header text-center reveal-on-scroll">
+            <span class="section-eyebrow">CELEBRATING US</span>
+            <h2 class="section-title">Magical Diwali Celebration</h2>
+            <div class="title-divider"><span class="gem">🪔</span></div>
+            <p class="section-subtitle">Click anywhere inside this arena to burst golden fireworks, or release sky lanterns into our night sky.</p>
+          </div>
+
+          <!-- Interactive Celebration Controls -->
+          <div class="celebration-interactive-panel glass-card reveal-on-scroll">
+            <div class="celebration-buttons">
+              <button id="burstFireworksBtn" class="celebration-btn" aria-label="Burst a flurry of fireworks">
+                <i class="fa-solid fa-sparkles"></i>
+                <span>Burst Fireworks 🎆</span>
+              </button>
+              <button id="releaseLanternBtn" class="celebration-btn" aria-label="Send a flying sky lantern">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Release Sky Lantern 🏮</span>
+              </button>
+              <button id="lightAllDiyasBtn" class="celebration-btn" aria-label="Light up all celebration diyas">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+                <span>Illumine Our Diyas 🪔</span>
+              </button>
+            </div>
+            </div>
+
+          <!-- Illuminated Diyas Altar -->
+          <div class="diyas-altar reveal-on-scroll" id="diyasAltar">
+            <div class="altar-diya active" data-name="Love">
+              <div class="altar-flame"><div class="altar-spark"></div></div>
+              <div class="altar-body"></div>
+              <span class="altar-label">Love</span>
+            </div>
+            <div class="altar-diya active" data-name="Happiness">
+              <div class="altar-flame"><div class="altar-spark"></div></div>
+              <div class="altar-body"></div>
+              <span class="altar-label">Happiness</span>
+            </div>
+            <div class="altar-diya active central-master-diya" data-name="Our Universe">
+              <div class="altar-flame"><div class="altar-spark"></div></div>
+              <div class="altar-body"></div>
+              <span class="altar-label">Our Universe</span>
+            </div>
+            <div class="altar-diya active" data-name="Peace">
+              <div class="altar-flame"><div class="altar-spark"></div></div>
+              <div class="altar-body"></div>
+              <span class="altar-label">Peace</span>
+            </div>
+            <div class="altar-diya active" data-name="Forever">
+              <div class="altar-flame"><div class="altar-spark"></div></div>
+              <div class="altar-body"></div>
+              <span class="altar-label">Forever</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================================= -->
+      <!-- 9. FINAL SECTION — CINEMATIC ENDING                           -->
+      <!-- ============================================================= -->
+      <section id="ending" class="ending-section" aria-label="Cinematic Ending">
+        <div class="container ending-container">
+          <!-- Glowing Animated Heart Surrounded by Stars -->
+          <div class="ending-heart-halo-wrapper reveal-on-scroll">
+            <div class="cosmic-orbit-ring ring-1" aria-hidden="true"></div>
+            <div class="cosmic-orbit-ring ring-2" aria-hidden="true"></div>
+            <div class="glowing-heart-center" aria-hidden="true">
+              <div class="heart-pulse-glow"></div>
+              <div class="heart-shape">❤️</div>
+            </div>
+          </div>
+
+          <div class="ending-text-block reveal-on-scroll">
+            <p class="ending-wish">
+              "May every Diwali of your life be as beautiful as your smile."
+            </p>
+            <h2 class="ending-title">
+              Happy Diwali, My Everything ❤️
+            </h2>
+          </div>
+
+          <!-- Replay Button -->
+          <div class="ending-action reveal-on-scroll">
+            <button id="experienceAgainBtn" class="btn-royal-glow" aria-label="Experience the Diwali surprise again">
+              <span>Experience the Magic Again ✨</span>
+            </button>
+          </div>
+
+          <!-- Subtle Romantic Footer -->
+          <footer class="romantic-footer reveal-on-scroll">
+            <div class="footer-divider"></div>
+            <p class="footer-note">
+              Made with endless love, just for you.
+            </p>
+            <p class="footer-subnote">
+              ✨ Every diya lit tonight whispers your name ✨
+            </p>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+  </div><!-- /main-experience -->
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
